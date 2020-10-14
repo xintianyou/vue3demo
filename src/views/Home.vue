@@ -1,8 +1,7 @@
 <template>
   <div class="home">
-    首页
+    <h1>This is an home page</h1>
     <a-button type="danger">点我</a-button>
-
   </div>
 </template>
 
@@ -12,7 +11,7 @@ import { Options, Vue } from 'vue-class-component';
 @Options({
   components: {
     
-  },
+  }
 })
 export default class Home extends Vue {}
 </script>

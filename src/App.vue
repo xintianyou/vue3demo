@@ -3,9 +3,9 @@
     <a-layout-sider v-model:collapsed="collapsed" :trigger="null" collapsible>
       <div class="logo" />
       <a-menu theme="dark" mode="inline" v-model:selectedKeys="selectedKeys">
-        <a-menu-item key="/">
+        <a-menu-item key="/home">
           <user-outlined />
-          <router-link to="/">首页</router-link>
+          <router-link to="/home">首页</router-link>
         </a-menu-item>
         <a-menu-item key="/about">
           <video-camera-outlined />
@@ -44,10 +44,14 @@ export default {
   },
   data() {
     return {
-      selectedKeys: ['/'],
+      selectedKeys: [this.$route.path],
       collapsed: false,
     };
   },
+  created() {
+    console.log(this.$route)
+    console.log(this.$route.path)
+  }
 };
 </script>
 <style lang="scss">
