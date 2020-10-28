@@ -34,6 +34,9 @@ import {
   MenuUnfoldOutlined,
   MenuFoldOutlined,
 } from '@ant-design/icons-vue';
+import { getCurrentInstance, reactive, toRefs, watch } from 'vue'
+import { useRouter, useRoute } from 'vue-router'
+import { useStore } from 'vuex'
 
 export default {
   components: {
@@ -42,15 +45,30 @@ export default {
     MenuUnfoldOutlined,
     MenuFoldOutlined,
   },
-  data() {
-    return {
-      selectedKeys: [this.$route.path],
+  setup() {
+    const { ctx } = getCurrentInstance()
+    const route = useRoute()
+    // const store = useStore()
+    
+    const data = reactive({
       collapsed: false,
-    };
-  },
-  created() {
-    console.log(this.$route)
-    console.log(this.$route.path)
+      selectedKeys: []
+    });
+
+    watch(
+      () => route,
+      (val) => {
+        data.selectedKeys = [val.fullPath]
+      },
+      {
+        immediate: true,
+        deep: true
+      }
+    );
+
+    return {
+      ...toRefs(data) //toRefs 相当于结构，保证数据是响应式的
+    }
   }
 };
 </script>
