@@ -7,8 +7,9 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, toRefs, computed } from 'vue'
+import { defineComponent, reactive, toRefs, watch, computed } from 'vue'
 import { useStore } from 'vuex'
+import { useRouter, useRoute } from 'vue-router'
 export default defineComponent({
 	setup() {
 		const store = useStore()
@@ -24,6 +25,7 @@ export default defineComponent({
 		const newCount = computed(() => {
 			return store.getters.getCount
 		})
+
 		return {
 			...toRefs(data),
 			handleClick,
