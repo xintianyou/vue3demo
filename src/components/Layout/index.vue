@@ -1,5 +1,5 @@
 <template>
-	<a-layout id="components-layout-demo-custom-trigger">
+  <a-layout id="components-layout-demo-custom-trigger">
     <a-layout-sider v-model:collapsed="collapsed" :trigger="null" collapsible>
       <div class="logo" />
       <a-menu theme="dark" mode="inline" v-model:selectedKeys="selectedKeys">
@@ -18,8 +18,8 @@
         <menu-unfold-outlined v-if="collapsed" class="trigger" @click="() => (collapsed = !collapsed)" />
         <menu-fold-outlined v-else class="trigger" @click="() => (collapsed = !collapsed)" />
       </a-layout-header>
-      <a-layout-content :style="{ margin: '24px 16px', padding: '24px', background: '#fff', minHeight: '280px'}" >
-        <router-view/>
+      <a-layout-content :style="{ margin: '24px 16px', padding: '24px', background: '#fff', minHeight: '280px'}">
+        <router-view />
       </a-layout-content>
       <a-layout-footer style="textAlign: center">
         <a href="http://beian.miit.gov.cn/" target="_blank">鄂ICP备2020015245号</a>
@@ -50,21 +50,24 @@ export default {
     // const { ctx } = getCurrentInstance()
     const route = useRoute()
     const router = useRouter()
-    
+
     const data = reactive({
       collapsed: false,
-      selectedKeys: [],
+      // selectedKeys: [],
       count: 0
     });
 
-    const path = computed(() => {console.log(route.fullPath)});
-    const newcount = computed(() => { console.log(data.count); return data.count})
-
+    const path = computed(() => { console.log(route.fullPath) });
+    const newcount = computed(() => { console.log(data.count); return data.count })
+    const selectedKeys = computed(() => {
+      console.log(route.path)
+      return [route.path]
+    })
     console.log(newcount)
 
     const handleAdd = () => {
       data.count++
-      console.log(data.count) 
+      console.log(data.count)
     }
 
     // console.log(path)
@@ -95,7 +98,8 @@ export default {
 
     return {
       ...toRefs(data), //toRefs 相当于结构，保证数据是响应式的
-      handleAdd
+      handleAdd,
+      selectedKeys
     }
   }
 };
