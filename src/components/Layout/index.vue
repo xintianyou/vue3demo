@@ -60,7 +60,7 @@ export default {
     const path = computed(() => { console.log(route.fullPath) });
     const newcount = computed(() => { console.log(data.count); return data.count })
     const selectedKeys = computed(() => {
-      console.log(route.path)
+      console.log(route.path, '逗比')
       return [route.path]
     })
     console.log(newcount)
